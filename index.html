@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.min.css">
+    <script src="https://kit.fontawesome.com/cd7f012803.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="img/hearts.svg" type="image/svg">
+    <title>Document</title>
+</head>
+
+<body>
+    <header class="header" id="sticky-header">
+        <nav class="menu">
+            <div class="menu-container">
+                <div class="me">
+                    <div class="logo"></div>
+                </div>
+                <div class="burger-menu">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div id="myNav" class="overlay">
+        <div class="overlay-content">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+
+    <div id="loader" class="loader">
+        <div class="container-heart">
+            <div id='heart' class="heart heart-beat">
+                <h3 class="heart-text">TOUCH</h3>
+            </div>
+        </div>
+    </div>
+
+    <main class="main">
+        <section class="section-introduce" id="home">
+            <div class="container">
+                <div class="introduce-info">
+                    <div class="introduce-info__text"></div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="home-mast" id="about">
+            <div class="home-mast__title">
+                <h3>Немного обо мне</h3>
+            </div>
+            <div class="home-mast__container">
+                <div>
+                    <div class="absolute-bg"
+                        style="background-image: url('https://source.unsplash.com/3IEZsaXmzzs/1500x1200');">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda temporibus maxime,
+                            obcaecati ipsa officiis dignissimos.</p>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="absolute-bg"
+                        style="background-image: url('https://source.unsplash.com/BIZv8MWH00s/1500x1200');">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda temporibus maxime,
+                            obcaecati ipsa officiis dignissimos.</p>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="absolute-bg"
+                        style="background-image: url('https://source.unsplash.com/z55CR_d0ayg/1500x1200');">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda temporibus maxime,
+                            obcaecati ipsa officiis dignissimos.</p>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="absolute-bg"
+                        style="background-image: url('https://source.unsplash.com/-FgZlbzZ0R8/1500x1200');">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda temporibus maxime,
+                            obcaecati ipsa officiis dignissimos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="form-container">
+                    <form method="POST">
+                        <div class="input-group">
+                            <input class="input-group__input" name="name" type="text" required="required">
+                            <span class="input-group__highlight"></span>
+                            <span class="input-group__bar"></span>
+                            <label class="input-group__label">Твоё имя</label>
+                        </div>
+                        <div class="input-group">
+                            <input class="input-group__input" name="phone" type="text" required="required">
+                            <span class="input-group__highlight"></span>
+                            <span class="input-group__bar"></span>
+                            <label class="input-group__label">Твой телефон</label>
+                        </div>
+                        <div class="input-group">
+                            <input class="input-group__input" name="message" type="text" required>
+                            <span class="input-group__highlight"></span>
+                            <span class="input-group__bar"></span>
+                            <label class="input-group__label">Напиши что-нибудь</label>
+                        </div>
+                        <button type="submit" id="submit" class="btn-default btn-default_white">
+                            <span>Отправить</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="wrapper">
+            <p>© 2020 Владимир</p>
+            <div class="social">
+                <a target="_blank" class="links" href="https://vk.com/colorofmadness">
+                    <i class="fab fa-vk"></i>
+                </a>
+                <a target="_blank" class="links" href="https://instagram.com/colorofmadness">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a target="_blank" class="links" href="https://twitter.com/vokirrr">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a target="_blank" class="links" href="https://t.me/vokir">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./js/scripts.min.js"></script>
+    
+</body>
+
+</html>
