@@ -33,32 +33,54 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 })
 
-try {
-	document.getElementById('submit').addEventListener('click',(e)=>{
-		e.preventDefault()
+function valid(e) {
+	let inputs = document.querySelectorAll('form input')
+	status = 0
+	for (let input of inputs) {
+		if (input.classList.contains('input-group__input_correct')) {
+			status++;
+		}
+	}
+	if (status == 3) {
+		e.preventDefault();
 		let messages = {
-			'message' : [],
-		} 
+			'message': [],
+		}
 		let inputs = document.querySelectorAll('form input')
-		for(let input of inputs){
+		for (let input of inputs) {
 			messages.message.push(input.value)
 		}
-		console.log(messages)
-		console.log(JSON.stringify(messages))
+		JSON.stringify(messages)
 		$.ajax({
 			type: "POST",
-			url: '/ajax.php',
+			url: 'ajax.php',
 			cache: false,
-			data: ({message: messages}),
+			data: {
+				name: messages.message[0],
+				phone: messages.message[1],
+				text: messages.message[3]
+			},
 			dataType: "json",
-			success: function(data){
+			success: function (data) {
+				document.querySelector('.overlay-loader').classList.toggle('overlay-loader_active')
+				document.querySelector('form').remove()
+				$('.form-container').append(`<div class="logo"></div><br>
+				<h1>Форма успешно отправлена</h1>`)
+				setTimeout(() => {
+					document.querySelector('.overlay-loader').classList.toggle('overlay-loader_active')
+				}, 1000);
 				console.log("Не проиграл");
 			},
-			error: function(data) {
+			error: function (data) {
 				console.log("Проиграл", data)
 			}
 		});
+	}
+}
+try {
+	document.getElementById('submit').addEventListener('click', (e) => {
+		valid(e)
 	})
 } catch (error) {
-	
+
 }

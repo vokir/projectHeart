@@ -276,7 +276,7 @@
   });
   $("#myNav a").on("click", function () {
     $('html,body').stop().animate({
-      scrollTop: $($(this).attr('href')).offset().top
+      scrollTop: $($(this).attr('href')).offset().top - 100
     }, 1000);
     document.getElementById("myNav").style.height = "0%";
     close();
@@ -314,45 +314,79 @@
     }
   });
 
-  try {
-    document.getElementById('submit').addEventListener('click', function (e) {
+  function valid(e) {
+    var inputs = document.querySelectorAll('form input');
+    status = 0;
+
+    var _iterator = _createForOfIteratorHelper(inputs),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var _input = _step.value;
+
+        if (_input.classList.contains('input-group__input_correct')) {
+          status++;
+        }
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+
+    if (status == 3) {
       e.preventDefault();
       var messages = {
         'message': []
       };
-      var inputs = document.querySelectorAll('form input');
 
-      var _iterator = _createForOfIteratorHelper(inputs),
-          _step;
+      var _inputs = document.querySelectorAll('form input');
+
+      var _iterator2 = _createForOfIteratorHelper(_inputs),
+          _step2;
 
       try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var input = _step.value;
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var input = _step2.value;
           messages.message.push(input.value);
         }
       } catch (err) {
-        _iterator.e(err);
+        _iterator2.e(err);
       } finally {
-        _iterator.f();
+        _iterator2.f();
       }
 
-      console.log(messages);
-      console.log(JSON.stringify(messages));
+      JSON.stringify(messages);
       $.ajax({
         type: "POST",
-        url: '/ajax.php',
+        url: 'ajax.php',
         cache: false,
         data: {
-          message: messages
+          name: messages.message[0],
+          phone: messages.message[1],
+          text: messages.message[3]
         },
         dataType: "json",
         success: function success(data) {
+          document.querySelector('.overlay-loader').classList.toggle('overlay-loader_active');
+          document.querySelector('form').remove();
+          $('.form-container').append("<div class=\"logo\"></div><br>\n\t\t\t\t<h1>\u0424\u043E\u0440\u043C\u0430 \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u043E\u0442\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0430</h1>");
+          setTimeout(function () {
+            document.querySelector('.overlay-loader').classList.toggle('overlay-loader_active');
+          }, 1000);
           console.log("Не проиграл");
         },
         error: function error(data) {
           console.log("Проиграл", data);
         }
       });
+    }
+  }
+
+  try {
+    document.getElementById('submit').addEventListener('click', function (e) {
+      valid(e);
     });
   } catch (error) {}
 

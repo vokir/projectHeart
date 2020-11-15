@@ -55,7 +55,7 @@ document.querySelector(".burger-menu").addEventListener("click", () => {
 });
 $("#myNav a").on("click", function () {
     $('html,body').stop().animate({
-        scrollTop: $($(this).attr('href')).offset().top
+        scrollTop: $($(this).attr('href')).offset().top - 100
     }, 1000);
     document.getElementById("myNav").style.height = "0%";
     close()
