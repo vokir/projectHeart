@@ -101,6 +101,7 @@
 
   var load = document.querySelector('#heart');
   var text = document.getElementsByClassName('heart-text');
+  document.body.style.overflow = 'hidden';
   load.addEventListener("click", function () {
     load.classList.remove('heart-beat');
     load.classList.toggle('tool');
@@ -220,66 +221,28 @@
     counter = (counter + 1) % phrases.length;
   };
 
-  var bar = document.querySelectorAll('.burger-menu')[0].children;
-  var menustate = 0;
-
-  function open() {
-    bar[0].style.width = "5%";
-    bar[2].style.width = "5%";
-    bar[1].style.width = "5%";
-    bar[1].style.left = "47.5%";
-    setTimeout(function () {
-      bar[0].style.transform = "rotateZ(45deg)";
-      bar[2].style.transform = "rotateZ(45deg)";
-      bar[1].style.transform = "rotateZ(135deg)";
-      setTimeout(function () {
-        bar[2].style.top = "47%";
-        bar[0].style.top = "47%";
-        bar[0].style.width = "100%";
-        bar[2].style.width = "100%";
-        bar[1].style.left = "0px";
-        bar[1].style.width = "100%";
-      }, 50);
-    }, 100);
-    document.getElementById("myNav").style.height = "100%";
-    menustate = 1;
-  }
-
-  function close() {
-    bar[0].style.top = "25px";
-    bar[2].style.top = "45px";
-    bar[0].style.width = "5%";
-    bar[2].style.width = "5%";
-    bar[1].style.left = "47.5%";
-    bar[1].style.width = "5%";
-    setTimeout(function () {
-      bar[0].style.transform = "rotateZ(0deg)";
-      bar[2].style.transform = "rotateZ(0deg)";
-      bar[1].style.transform = "rotateZ(0deg)";
-      setTimeout(function () {
-        bar[0].style.width = "100%";
-        bar[2].style.width = "100%";
-        bar[1].style.width = "100%";
-        bar[1].style.left = "0%";
-      }, 50);
-    }, 100);
-    menustate = 0;
-    document.getElementById("myNav").style.height = "0%";
-  }
-
-  document.querySelector(".burger-menu").addEventListener("click", function () {
-    if (menustate === 0) {
-      open();
-    } else {
-      close();
-    }
-  });
-  $("#myNav a").on("click", function () {
-    $('html,body').stop().animate({
-      scrollTop: $($(this).attr('href')).offset().top - 100
-    }, 1000);
-    document.getElementById("myNav").style.height = "0%";
-    close();
+  document.addEventListener('DOMContentLoaded', function () {
+    window.addEventListener('scroll', function () {
+      var w = $(window).scrollTop();
+      var head = document.querySelector('.header');
+      var overlay = document.querySelector('.header-menu');
+      w > 100 ? head.classList.add('header_shadow') : head.classList.remove('header_shadow');
+      w > 100 ? overlay.classList.add('header-menu_sticky') : overlay.classList.remove('header-menu_sticky');
+    });
+    document.querySelector('.header-burger__wrap').addEventListener('click', function () {
+      document.querySelector('.header-burger__wrap').classList.toggle('header-burger__wrap_close');
+      document.querySelector('.header-menu').classList.toggle('header-menu_open');
+      document.body.classList.toggle('scroll');
+    });
+    $('a[href*="#"]').on('click', function (e) {
+      $('html,body').animate({
+        scrollTop: $($(this).attr('href')).offset().top - 100
+      }, 1000);
+      e.preventDefault();
+      document.querySelector('.header-burger__wrap').classList.toggle('header-burger__wrap_close');
+      document.querySelector('.header-menu').classList.toggle('header-menu_open');
+      document.body.classList.toggle('scroll');
+    });
   });
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -389,5 +352,23 @@
       valid(e);
     });
   } catch (error) {}
+
+  $(document).ready(function ($) {
+    $(window).on('scroll', function () {
+      //ADD .TIGHT
+      if ($(window).scrollTop() + $(window).height() > $('.wrapper').outerHeight()) {
+        $('body').addClass('tight');
+        $('.arrow').hide();
+      } else {
+        $('body').removeClass('tight');
+        $('.arrow').show();
+      }
+    });
+  });
+  $('.arrow').click(function () {
+    $("html").animate({
+      scrollTop: $('html').prop("scrollHeight")
+    }, 1200);
+  });
 
 }));

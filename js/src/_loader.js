@@ -1,5 +1,6 @@
 let load = document.querySelector('#heart');
 let text = document.getElementsByClassName('heart-text')
+document.body.style.overflow = 'hidden'
 load.addEventListener("click", () => {
   load.classList.remove('heart-beat');
   load.classList.toggle('tool');
